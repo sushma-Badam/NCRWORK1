@@ -14,6 +14,7 @@ public:
 	}
 	friend ostream & operator<<(ostream &out, complex &c);
 };
+
 ostream & operator<<(ostream &out, complex &c)
 {
 	out << c.real << "+i" << c.img;
