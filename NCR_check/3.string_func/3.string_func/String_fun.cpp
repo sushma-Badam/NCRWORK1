@@ -1,6 +1,7 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
+#define MAX 100
 void reverse(char *s1,char *s2)
 {
 	int length = strlen(s1);
@@ -37,7 +38,7 @@ void str_cat(char *s1, char *s2)
 	}
 	*(s1 + l) = '\0';
 }
-void concat(char *s1, char *s2)
+void str_compare(char *s1, char *s2)
 {
 	int l1 = strlen(s1);
 	int l2 = strlen(s2);
@@ -63,48 +64,53 @@ void concat(char *s1, char *s2)
 }
 int main()
 {
-	char *string1 = (char*)malloc(40);
-	char *string2 = (char*)malloc(40);
-	int choice = 0,i=1;
-	while (i)
+	char *string1 = (char*)malloc(MAX);
+	char *string2 = (char*)malloc(MAX);
+	int choice = 0;
+	while (1)
 	{
-		printf("enter 1.reverse 2.copy 3.concatnate 4.comparison \n");
+		printf("\n\nEnter \n 0:EXIT \n 1.Reverse \n 2.Copy \n 3.Concatnate \n 4.Comparison : \n");
 		scanf_s("%d", &choice);
 		switch (choice)
 		{
-		case 1:printf("enter string to be reversed :\n");
-				scanf_s("%9s", string1, 40);
-				reverse(string1, string2);
-				printf("reversed string :%s ", string2);
-				break;
-		case 2:printf("enter string to be copied :\n");
-			    scanf_s("%9s", string1, 40);
-				str_copy(string1, string2);
-				printf("\n copied string :%s", string2);
-				break;
-		case 3:printf("enter first string :\n");
-			    scanf_s("%9s", string1, 40);
-				printf("enter second string :\n");
-				scanf_s("%9s", string2, 40);
-				str_cat(string1,string2);
-				printf("\n concatnated string :%s", string1);
-				break;
-		case 4:printf("enter first string :\n");
-			   scanf_s("%9s", string1, 40);
-			   printf("enter second string :\n");
-			   scanf_s("%9s", string2, 40);
-			   concat(string1, string2);
-			   break;
-		default:printf("enter values from 1 to 4");
-		}
-		printf("\n press 1 to continue.... zero to terminate :");
-		scanf_s("%d", &i);
-		if (i == 0)
+		case 1:printf("\nEnter string to be reversed :\n");
+			getchar();
+			scanf_s("%[^\n]s", string1, MAX);
+			reverse(string1, string2);
+			printf("Reversed string :%s ", string2);
+			break;
+		case 2:printf("\nEnter string to be copied :\n");
+			getchar();
+			scanf_s("%[^\n]s", string1, MAX);
+			str_copy(string1, string2);
+			printf("Copied string :%s", string2);
+			break;
+		case 3:printf("\nEnter first string :\n");
+			getchar();
+			scanf_s("%[^\n]s", string1, MAX);
+			printf("Enter second string :\n");
+			getchar();
+			scanf_s("%[^\n]s", string2, MAX);
+			str_cat(string1, string2);
+			printf("\n Concatnated string :%s", string1);
+			break;
+		case 4:printf("\nEnter first string :\n");
+			getchar();
+			scanf_s("%[^\n]s", string1, MAX);
+			printf("Enter second string :\n");
+			getchar();
+			scanf_s("%[^\n]s", string2, MAX);
+			str_compare(string1, string2);
+			break;
+		case 0:
+			free(string1);
+			free(string2);
+			getchar();
 			return 0;
+		default:
+			printf("\nINVALID CHOICE \n");
+		}
 	}
-	free(string1);
-	free(string2);
-	getchar();
-	getchar();
+
 	return 0;
 }
